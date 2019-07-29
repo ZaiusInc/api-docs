@@ -6,15 +6,15 @@
 
 ## REST API
 
-* [Customers](rest-api/customers/README.md)
-  * [Consent](rest-api/customers/marketing-consent/README.md)
-    * [Compliance](rest-api/customers/marketing-consent/compliance.md)
-  * [Lists](rest-api/customers/lists.md)
+* [Compliance](rest-api/compliance.md)
+* [Consent](rest-api/marketing-consent.md)
+* [Customers](rest-api/customers.md)
 * [Events](rest-api/events.md)
-* [Orders](rest-api/orders.md)
-* [Objects](rest-api/objects/README.md)
-  * [Products](rest-api/objects/products.md)
 * [Exports](rest-api/exports.md)
+* [Lists](rest-api/lists.md)
+* [Orders](rest-api/orders.md)
+* [Objects](rest-api/objects.md)
+* [Products](rest-api/products.md)
 * [Recommendations](rest-api/recommendations.md)
 * [Advanced](rest-api/advanced/README.md)
   * [Schema](rest-api/advanced/schema.md)
