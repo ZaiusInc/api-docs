@@ -12,6 +12,7 @@
 * [Events](rest-api/events.md)
 * [Orders](rest-api/orders.md)
 * [Objects](rest-api/objects.md)
+* [Products](rest-api/products.md)
 * [Exports](rest-api/exports.md)
 * [Recommendations](rest-api/recommendations.md)
 
