@@ -6,7 +6,6 @@
 
 ## REST API
 
-* [Compliance](rest-api/compliance.md)
 * [Consent](rest-api/marketing-consent.md)
 * [Customers](rest-api/customers.md)
 * [Events](rest-api/events.md)
@@ -17,6 +16,7 @@
 * [Products](rest-api/products.md)
 * [Recommendations](rest-api/recommendations.md)
 * [Advanced](rest-api/advanced/README.md)
+  * [Compliance](rest-api/advanced/compliance.md)
   * [Schema](rest-api/advanced/schema.md)
   * [Identifiers](rest-api/advanced/identifiers/README.md)
     * [Reachability](rest-api/advanced/identifiers/reachability.md)
