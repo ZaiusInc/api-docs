@@ -40,11 +40,10 @@ Attributes like gender and first\_name associated with this customer.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-```bash
-curl -iX POST \
-https://api.zaius.com/v3/profiles \
--d '[
-  {
+{% code-tabs %}
+{% code-tabs-item title="Example Payload" %}
+```javascript
+[{
     "attributes": {
       "first_name": "Johnny",
       "last_name": "Zaius",
@@ -74,11 +73,10 @@ https://api.zaius.com/v3/profiles \
       "timezone": "America/New_York",
       "gender": "F"
     }
-  }
-]' \
--H 'Content-Type: application/json' \
--H 'x-api-key: example.apiKey'
+}]
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 {% api-method method="get" host="https://api.zaius.com/v3" path="/profiles" %}
 {% api-method-summary %}
