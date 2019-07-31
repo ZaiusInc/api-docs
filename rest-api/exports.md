@@ -403,6 +403,109 @@ The objects to export in full.
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
+{% api-method method="get" host="https://api.zaius.com/v3" path="/exports/{export\_id}" %}
+{% api-method-summary %}
+Get Export Job Status
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Fetch the status of an export request.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="{export\_id}" type="string" required=true %}
+Example: "3aab9524-5248-45f9-8102-0399872a921e" The export job ID to check.
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```javascript
+{
+  "id": "3aab9524-5248-45f9-8102-0399872a921e",
+  "path": "s3://zaius-outgoing/kIFB_X1VG2gf6caBn8LHtg/data-exports/3aab9524-5248-45f9-8102-0399872a921e",
+  "state": "pending",
+  "requested_at": "2018-09-10T21:07:10-05:00",
+  "detail": {
+    "id": "3aab9524-5248-45f9-8102-0399872a921e",
+    "format": "csv",
+    "delimiter": "comma",
+    "select": {
+      "object": "events",
+      "fields": [
+        "product.name"
+      ],
+      "filter": {
+        "field": "product.name",
+        "operator": "=",
+        "value": "%shoe%"
+      },
+      "sorts": [
+        {
+          "field": "product.name",
+          "order": "asc"
+        }
+      ]
+    },
+    "objects": [
+      "string"
+    ]
+  },
+  "started_at": "2018-09-10T21:07:10-05:00",
+  "completed_at": "2018-09-10T21:07:10-05:00"
+}
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=403 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```javascript
+{
+    "message": "Forbidden"
+}
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=404 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```javascript
+{
+  "title": "Not Found",
+  "status": 404,
+  "timestamp": "2018-09-10T21:07:10-05:00",
+  "detail": {
+    "message": "Unable to locate status for export example"
+  }
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% tabs %}
+{% tab title="Example Request" %}
+```bash
+curl -iX GET \
+'https://api.zaius.com/v3/exports/example-export-id' \
+-H 'x-api-key: example.apiKey'
+```
+{% endtab %}
+{% endtabs %}
+
 ## More on Filtering
 
 The filtering section in the payload may contain one of the following:
