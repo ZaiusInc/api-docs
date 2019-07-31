@@ -26,4 +26,6 @@
 
 * [Event Reference](https://developer.zaius.com/home/overview/events/standard-events)
 * [Order Reference](https://developer.zaius.com/home/overview/orders)
+* [Product Reference](https://developer.zaius.com/home/overview/products)
+* [Export Reference](https://developer.zaius.com/home/bulk-imports-exports/s3)
 
