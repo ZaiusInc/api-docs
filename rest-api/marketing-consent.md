@@ -135,12 +135,13 @@ the identifier value you're requesting consent information on
 
 ```javascript
 {
-	"identifier_value": "email",
-	"identifier_field_name": "tyler@zaius.com",
-	"consent": true,
-	"consent_update_reason": "reason",
-	"consent_update_ts": ts,
-	"event_data": {"source": "email_footer"}
+    "identifier_value": "john@example.com",
+    "identifier_field_name": "email",
+    "zaius_id": "id", //response only
+    "consent": false,
+    "consent_update_reason": "reason", //optional
+    "consent_update_ts": 1556582935,
+    "event_data": {"source": "email_footer"}
 }
 ```
 {% endapi-method-response-example %}
