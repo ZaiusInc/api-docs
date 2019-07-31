@@ -52,8 +52,29 @@ any valid marketing identifier type \(e.g. tyler@zaius.com\)
 
 {% endapi-method-response-example-description %}
 
+```javascript
+{
+    "title": "Accepted",
+    "status": 202,
+    "timestamp": "2019-07-30T23:55:00.519Z"
+}
 ```
+{% endapi-method-response-example %}
 
+{% api-method-response-example httpCode=400 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```javascript
+{
+    "title": "Bad Request",
+    "status": 400,
+    "timestamp": "2019-07-30T23:53:48.615Z",
+    "detail": {
+        "message": "Unable to parse request body."
+    }
+}
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}
@@ -117,9 +138,9 @@ the identifier value you're requesting consent information on
 	"identifier_value": "email",
 	"identifier_field_name": "tyler@zaius.com",
 	"consent": true,
-	"consent_update_reason": "reason", //optional
-	"consent_update_ts": ts, //optional
-	"event_data": {} //optional
+	"consent_update_reason": "reason",
+	"consent_update_ts": ts,
+	"event_data": {"source": "email_footer"}
 }
 ```
 {% endapi-method-response-example %}
