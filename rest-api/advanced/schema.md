@@ -249,12 +249,8 @@ the name of the object where the field will be created
 {% endapi-method-path-parameters %}
 
 {% api-method-body-parameters %}
-{% api-method-parameter name="primary\_key" type="boolean" required=true %}
-whether or not the field is the object's primary key
-{% endapi-method-parameter %}
-
 {% api-method-parameter name="name" type="string" required=true %}
-the plural name of the object \(e.g. ticket\_id\)
+the name of the field \(e.g. ticket\_id\)
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="display\_name" type="string" required=true %}
@@ -317,10 +313,8 @@ an array of relations field data type. options are `number`, `timestamp`, `strin
 {
   "name": "field_name",
   "type": "number",
-  "auto": true,
   "display_name": "Display Name",
-  "description": "Description of field",
-  "primary_key": true
+  "description": "Description of field"
 }
 ```
 {% endcode-tabs-item %}
