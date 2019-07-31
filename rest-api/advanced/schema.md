@@ -8,7 +8,7 @@ Objects are composed of Fields.
 
 Fields link objects together via Relations.
 
-## Objects
+### Objects
 
 ```javascript
 {
@@ -28,7 +28,7 @@ Fields link objects together via Relations.
 | fields | collection of `Field` objects constituting the `Object` |
 | relations | collection of `Relation` objects |
 
-## Fields
+### Fields
 
 ```javascript
 {
@@ -52,7 +52,7 @@ Fields link objects together via Relations.
 | created\_by | \(read only\) specifies what/who created the field. current values as `zaius` and `account` |
 | primary\_key | marks the field as identifying for the containing object. only allowed during object creation. |
 
-## Relationships
+### Relationships
 
 Representation describing a relationship between two objects. The `Object` containing the `Relation` definition is the `parent` object.
 
