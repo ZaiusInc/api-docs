@@ -1,12 +1,8 @@
----
-description: 'Create, Update and Get customer attributes & identifiers'
----
-
 # Customers
 
 {% api-method method="post" host="https://api.zaius.com/v3" path="/profiles" %}
 {% api-method-summary %}
-Create & Update
+Create & Update Customer\(s\)
 {% endapi-method-summary %}
 
 {% api-method-description %}
@@ -80,7 +76,7 @@ Attributes like gender and first\_name associated with this customer.
 
 {% api-method method="get" host="https://api.zaius.com/v3" path="/profiles" %}
 {% api-method-summary %}
-Get Information
+Get Customer Information
 {% endapi-method-summary %}
 
 {% api-method-description %}
