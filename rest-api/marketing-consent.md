@@ -135,13 +135,12 @@ the identifier value you're requesting consent information on
 
 ```javascript
 {
-    "identifier_value": "john@example.com",
-    "identifier_field_name": "email",
-    "zaius_id": "id", //response only
-    "consent": false,
-    "consent_update_reason": "reason", //optional
-    "consent_update_ts": 1556582935,
-    "event_data": {"source": "email_footer"}
+	"identifier_value": "id",
+	"identifier_field_name": "field_name",
+	"zaius_id": "id",
+	"consent": {true/false},
+	"consent_update_reason": "reason", //optional
+	"consent_update_ts": ts
 }
 ```
 {% endapi-method-response-example %}
@@ -153,7 +152,7 @@ the identifier value you're requesting consent information on
 {% code-tabs-item title="Example Request" %}
 ```javascript
 curl -iX GET \
-'https://api.zaius.com/v3/consent/email?id=tyler@zaius.com' \
+'https://api.zaius.com/v3/consent/{field_name}?id={id}' \
 -H 'x-api-key: example.apiKey'
 ```
 {% endcode-tabs-item %}
