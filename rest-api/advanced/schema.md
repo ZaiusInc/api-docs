@@ -22,6 +22,14 @@ Fields link objects together via Relations.
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
+| property | description |
+| :--- | :--- |
+| name | plural name for the object |
+| display\_name | user-friendly name shown within Zaius |
+| alias | singular name for the object |
+| fields | collection of `Field` objects constituting the `Object` |
+| relations | collection of `Relation` objects |
+
 {% api-method method="post" host="https://api.zaius.com/v3" path="/schema/objects" %}
 {% api-method-summary %}
 Create Object
@@ -257,14 +265,6 @@ List the details of all objects within a Zaius account.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-| property | description |
-| :--- | :--- |
-| name | plural name for the object |
-| display\_name | user-friendly name shown within Zaius |
-| alias | singular name for the object |
-| fields | collection of `Field` objects constituting the `Object` |
-| relations | collection of `Relation` objects |
-
 {% tabs %}
 {% tab title="Example Request" %}
 ```bash
@@ -355,6 +355,16 @@ curl -iX GET \
   "primary_key": true
 }
 ```
+
+| property | description |
+| :--- | :--- |
+| name | name of the field |
+| type | field data type. options are `number`, `timestamp`, `text`, `boolean` |
+| auto | \(read only\) marks the field as one that is auto populated by Zaius |
+| display\_name | the user-friendly name used within Zaius |
+| description | description of the field |
+| created\_by | \(read only\) specifies what/who created the field. current values as `zaius` and `account` |
+| primary\_key | marks the field as identifying for the containing object. only allowed during object creation. |
 
 {% api-method method="post" host="https://api.zaius.com/v3" path="/schema/objects/{object\_name}/fields" %}
 {% api-method-summary %}
@@ -503,100 +513,6 @@ The name of the object.
 {% endapi-method-spec %}
 {% endapi-method %}
 
-| property | description |
-| :--- | :--- |
-| name | name of the field |
-| type | field data type. options are `number`, `timestamp`, `text`, `boolean` |
-| auto | \(read only\) marks the field as one that is auto populated by Zaius |
-| display\_name | the user-friendly name used within Zaius |
-| description | description of the field |
-| created\_by | \(read only\) specifies what/who created the field. current values as `zaius` and `account` |
-| primary\_key | marks the field as identifying for the containing object. only allowed during object creation. |
-
-{% api-method method="post" host="https://api.zaius.com/v3" path="/schema/objects/{object\_name}/relations" %}
-{% api-method-summary %}
-Create Relationship
-{% endapi-method-summary %}
-
-{% api-method-description %}
-Create a new relation between Objects within Zaius
-{% endapi-method-description %}
-
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="{object\_name}" type="string" required=true %}
-the name of the object where the field will be created
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
-
-{% api-method-body-parameters %}
-{% api-method-parameter name="child\_object" type="boolean" required=true %}
-the name of the child object
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="name" type="string" required=true %}
-the name of the relationship \(e.g. ticket\)
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="display\_name" type="string" required=true %}
-the -readable name of the field \(e.g. Ticket\)
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="join\_fields.parent" type="array" required=true %}
-the name on this object that will link to the child object \(e.g. id\)
-{% endapi-method-parameter %}
-
-{% api-method-parameter name="join\_fields.child" type="array" required=true %}
-the name on the child object that will link to this object \(e.g. ticket\_id\)
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
-```javascript
-{
-  "name": "my_relation",
-  "display_name": "My Relationship",
-  "child_object": "child",
-  "join_fields": [{
-    "parent": "child_id",
-    "child": "child_id"
-  }]
-}
-```
-{% endapi-method-response-example %}
-
-{% api-method-response-example httpCode=400 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
-```javascript
-{
-  "title": "Bad Request",
-  "status": 400,
-  "timestamp": "2018-08-14T12:23:04.500Z",
-  "detail": {
-    "invalids": [
-      {
-        "field": "join_fields[0].parent",
-        "reason": "does not match child data type"
-      }
-    ]
-  }
-}
-```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
-
 {% page-ref page="identifiers/" %}
 
 {% code-tabs %}
@@ -700,6 +616,90 @@ Representation describing a relationship between two objects. The `Object` conta
 | display\_name | user-friendly name shown within Zaius |
 | child\_object | child `Object` name |
 | join\_fields | collection of `parent` `child` pairs. `parent` is the field name \(foreign key\) on the owning `Object` and `child` is the related `Object`s primary key. Multiple are allowed to support objects with compound primary keys. |
+
+{% api-method method="post" host="https://api.zaius.com/v3" path="/schema/objects/{object\_name}/relations" %}
+{% api-method-summary %}
+Create Relationship
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Create a new relation between Objects within Zaius
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="{object\_name}" type="string" required=true %}
+the name of the object where the field will be created
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+
+{% api-method-body-parameters %}
+{% api-method-parameter name="child\_object" type="boolean" required=true %}
+the name of the child object
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="name" type="string" required=true %}
+the name of the relationship \(e.g. ticket\)
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="display\_name" type="string" required=true %}
+the -readable name of the field \(e.g. Ticket\)
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="join\_fields.parent" type="array" required=true %}
+the name on this object that will link to the child object \(e.g. id\)
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="join\_fields.child" type="array" required=true %}
+the name on the child object that will link to this object \(e.g. ticket\_id\)
+{% endapi-method-parameter %}
+{% endapi-method-body-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```javascript
+{
+  "name": "my_relation",
+  "display_name": "My Relationship",
+  "child_object": "child",
+  "join_fields": [{
+    "parent": "child_id",
+    "child": "child_id"
+  }]
+}
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=400 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```javascript
+{
+  "title": "Bad Request",
+  "status": 400,
+  "timestamp": "2018-08-14T12:23:04.500Z",
+  "detail": {
+    "invalids": [
+      {
+        "field": "join_fields[0].parent",
+        "reason": "does not match child data type"
+      }
+    ]
+  }
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
 
 {% api-method method="get" host="https://api.zaius.com/v3" path="/schema/objects/{object\_name}/relations" %}
 {% api-method-summary %}
