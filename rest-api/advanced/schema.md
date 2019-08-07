@@ -75,6 +75,8 @@ Representation describing a relationship between two objects. The `Object` conta
 | child\_object | child `Object` name |
 | join\_fields | collection of `parent` `child` pairs. `parent` is the field name \(foreign key\) on the owning `Object` and `child` is the related `Object`s primary key. Multiple are allowed to support objects with compound primary keys. |
 
+## Create Schema
+
 {% api-method method="post" host="https://api.zaius.com/v3" path="/schema/objects" %}
 {% api-method-summary %}
 Create Object
@@ -320,6 +322,14 @@ an array of relations field data type. options are `number`, `timestamp`, `strin
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
+### Identifier Fields
+
+{% hint style="warning" %}
+If you are attempting to create an identifier \(e.g. an address for messaging or an internal reference to a customer record similar to an email, phone number or token\), refer to the Identifier API documentation:
+{% endhint %}
+
+{% page-ref page="identifiers/" %}
+
 {% api-method method="post" host="https://api.zaius.com/v3" path="/schema/objects/{object\_name}/relations" %}
 {% api-method-summary %}
 Create Relationship
@@ -419,4 +429,392 @@ the name on the child object that will link to this object \(e.g. ticket\_id\)
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
+
+## Read Schema
+
+{% api-method method="get" host="https://api.zaius.com/v3" path="/schema/objects" %}
+{% api-method-summary %}
+List All Objects
+{% endapi-method-summary %}
+
+{% api-method-description %}
+List the details of all objects within a Zaius account.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```javascript
+[
+  {
+    "name": "tickets",
+    "display_name": "Tickets",
+    "alias": "ticket",
+    "fields": [
+      {
+        "name": "field_name",
+        "type": "number",
+        "display_name": "Display Name",
+        "primary": true
+      }
+    ],
+    "relations": [
+      {
+        "name": "my_relation",
+        "display_name": "My Relationship",
+        "child_object": "target_object_name",
+        "join_fields": [
+          {
+            "parent": "child_id",
+            "child": "child_id"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "concerts",
+    "display_name": "Concerts",
+    "alias": "concert",
+    "fields": [
+      {
+        "name": "field_name",
+        "type": "number",
+        "display_name": "Display Name",
+        "primary": true
+      }
+    ],
+    "relations": [
+      {
+        "name": "my_relation",
+        "display_name": "My Relationship",
+        "child_object": "target_object_name",
+        "join_fields": [
+          {
+            "parent": "child_id",
+            "child": "child_id"
+          }
+        ]
+      }
+    ]
+  }
+]
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% tabs %}
+{% tab title="Example Request" %}
+```bash
+curl -iX GET \
+'https://api.zaius.com/v3/schema/objects' \
+-H 'x-api-key: example.apiKey'
+```
+{% endtab %}
+{% endtabs %}
+
+{% api-method method="get" host="https://api.zaius.com/v3" path="/schema/objects/{object\_name}" %}
+{% api-method-summary %}
+List Specific Object
+{% endapi-method-summary %}
+
+{% api-method-description %}
+List all objects with a Zaius account.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="{object\_name}" type="string" required=true %}
+List the details of a specific object.
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```javascript
+{
+  "name": "tickets",
+  "display_name": "Tickets",
+  "alias": "ticket",
+  "fields": [
+    {
+      "name": "field_name",
+      "type": "number",
+      "display_name": "Display Name",
+      "primary": true
+    }
+  ],
+  "relations": [
+    {
+      "name": "my_relation",
+      "display_name": "My Relationship",
+      "child_object": "target_object_name",
+      "join_fields": [
+        {
+          "parent": "child_id",
+          "child": "child_id"
+        }
+      ]
+    }
+  ]
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% tabs %}
+{% tab title="Example Request" %}
+```bash
+curl -iX GET \
+'https://api.zaius.com/v3/schema/objects/myobject' \
+-H 'x-api-key: example.apiKey'
+```
+{% endtab %}
+{% endtabs %}
+
+{% api-method method="get" host="https://api.zaius.com/v3" path="/schema/objects/{object\_name}/fields" %}
+{% api-method-summary %}
+List All Fields on Object
+{% endapi-method-summary %}
+
+{% api-method-description %}
+List the details of all fields of an object.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="{object\_name}" type="string" required=true %}
+The name of the object.
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```javascript
+[
+  {
+    "name": "object_id",
+    "display_name": "New Object Identifier",
+    "type": "string",
+    "created_by" "account",
+    "primary": true
+  },
+  {
+    "name": "another_field",
+    "display_name": "Another Fields",
+    "type": "string",
+    "created_by" "account"
+  },
+  {
+    "name": "child_id",
+    "display_name": "Child Identifier",
+    "type": "number",
+    "created_by" "account"
+  }
+]
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% tabs %}
+{% tab title="Example Request" %}
+```bash
+curl -iX GET \
+'https://api.zaius.com/v3/schema/objects/{object_name}/fields' \
+-H 'x-api-key: example.apiKey'
+```
+{% endtab %}
+{% endtabs %}
+
+{% api-method method="get" host="https://api.zaius.com/v3" path="/schema/objects/{object\_name}/fields/{field\_name}" %}
+{% api-method-summary %}
+Get Single Field
+{% endapi-method-summary %}
+
+{% api-method-description %}
+List the details of a single field of an object.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="{field\_name}" type="string" required=true %}
+The name of the field.
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="{object\_name}" type="string" required=true %}
+The name of the object.
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```javascript
+{
+  	"name": "field_name",
+  	"type": "number",
+  	"display_name": "Display Name",
+  	"auto": true,
+  	"description": "The venue that the user visisted.",
+    "created_by" "zaius",
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% tabs %}
+{% tab title="Example Request" %}
+```bash
+curl -iX GET \
+'https://api.zaius.com/v3/schema/objects/{object_name}/fields/{field_name}' \
+-H 'x-api-key: example.apiKey'
+```
+{% endtab %}
+{% endtabs %}
+
+{% api-method method="get" host="https://api.zaius.com/v3" path="/schema/objects/{object\_name}/relations" %}
+{% api-method-summary %}
+List All Relations on Object
+{% endapi-method-summary %}
+
+{% api-method-description %}
+List the details of all relationships of an object.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="{object\_name}" type="string" required=true %}
+The name of the object.
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+[
+  {
+    "name": "my_relation",
+    "display_name": "My Relationship",
+    "child_object": "child",
+    "join_fields": [{
+      "parent": "child_id",
+      "child": "child_id"
+    }]
+  },
+  {
+    "name": "my_relation2",
+    "display_name": "My Relationship 2",
+    "child_object": "child",
+    "join_fields": [{
+      "parent": "child_id",
+      "child": "child_id"
+    }]
+  }
+]
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% tabs %}
+{% tab title="Example Request" %}
+```bash
+curl -iX GET \
+'https://api.zaius.com/v3/schema/objects/{object_name}/relations' \
+-H 'x-api-key: example.apiKey'
+```
+{% endtab %}
+{% endtabs %}
+
+{% api-method method="get" host="https://api.zaius.com/v3" path="/schema/objects/{object\_name}/relations/{relation\_name}" %}
+{% api-method-summary %}
+Get Single Relation
+{% endapi-method-summary %}
+
+{% api-method-description %}
+List the details of a single relationship of an object.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="{relation\_name}" type="string" required=true %}
+The name of the relationship.
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="{object\_name}" type="string" required=true %}
+The name of the object.
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```javascript
+{
+  "name": "my_relation",
+  "display_name": "My Relationship",
+  "child_object": "target_object_name",
+  "join_fields": [{
+    "parent": "child_id",
+    "child": "child_id"
+  }]
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% tabs %}
+{% tab title="Example Request" %}
+```bash
+curl -iX GET \
+'https://api.zaius.com/v3/schema/objects/{object_name}/relations/{relation_name}' \
+-H 'x-api-key: example.apiKey'
+```
+{% endtab %}
+{% endtabs %}
 
