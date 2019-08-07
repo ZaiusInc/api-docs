@@ -12,6 +12,10 @@ Create a new identifier within Zaius that will be used for user resolution.
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-body-parameters %}
+{% api-method-parameter name="merge\_confidence" type="string" required=true %}
+how confident are you that this identifier is not commonly on a shared device and can be used to merge customer records together? options are "high" and "low"
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="name" type="string" required=true %}
 the name of the identifier \(e.g. Shopify\)
 {% endapi-method-parameter %}
@@ -88,12 +92,13 @@ can this identifier be used to message customers and within campaigns?
 {% code-tabs %}
 {% code-tabs-item title="Example Payload" %}
 ```javascript
-{
+[{
   "name": "Facebook Messenger",
   "suffix": "id", // valid options: id, hash, number, token, alias, address, key
   "namespace": "My Facebook Page",
+  "merge_confidence": "low",
   "messaging": true
-}
+}] // array optional
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
