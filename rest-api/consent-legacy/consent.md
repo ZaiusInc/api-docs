@@ -2,7 +2,7 @@
 description: Manage a Customer's marketing consent.
 ---
 
-# Consent
+# Consent \(Beta\)
 
 {% hint style="danger" %}
 Customers that have not given marketing consent **cannot receive marketing messages.**

@@ -107,7 +107,7 @@ Get Consent
 {% endapi-method-summary %}
 
 {% api-method-description %}
-This endpoint allows you to get marketing consent information about a customer.
+This endpoint allows you to get reachability information about an identifier.
 {% endapi-method-description %}
 
 {% api-method-spec %}

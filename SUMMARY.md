@@ -6,7 +6,8 @@
 
 ## REST API
 
-* [Consent](rest-api/marketing-consent.md)
+* [Consent](rest-api/consent-legacy/README.md)
+  * [Consent \(Beta\)](rest-api/consent-legacy/consent.md)
 * [Customers](rest-api/customers.md)
 * [Events](rest-api/events.md)
 * [Exports](rest-api/exports.md)
