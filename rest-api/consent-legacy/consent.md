@@ -5,6 +5,10 @@ description: Manage a Customer's marketing consent.
 # Consent \(Beta\)
 
 {% hint style="danger" %}
+The Consent API Beta does not support batch / bulk imports.
+{% endhint %}
+
+{% hint style="danger" %}
 Customers that have not given marketing consent **cannot receive marketing messages.**
 {% endhint %}
 
