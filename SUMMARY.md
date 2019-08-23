@@ -25,8 +25,9 @@
 
 ## Reference
 
-* [Event Reference](https://developer.zaius.com/home/overview/events/standard-events)
-* [Order Reference](https://developer.zaius.com/home/overview/orders)
-* [Product Reference](https://developer.zaius.com/home/overview/products)
-* [Export Reference](https://developer.zaius.com/home/bulk-imports-exports/s3)
+* [Core Concepts](reference/core-concepts/README.md)
+  * [Event Reference](https://docs.developers.zaius.com/core-concepts/the-basics/events)
+  * [Order Reference](https://docs.developers.zaius.com/core-concepts/use-cases/ecommerce/orders)
+  * [Product Reference](https://docs.developers.zaius.com/core-concepts/use-cases/ecommerce/products)
+  * [Export Reference](https://docs.developers.zaius.com/api/rest-api/exports)
 
