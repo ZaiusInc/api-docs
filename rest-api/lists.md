@@ -100,7 +100,7 @@ curl -iX GET \
 {% endtab %}
 {% endtabs %}
 
-{% api-method method="post" host="https://api.zaius.com/v3" path="/lists" %}
+{% api-method method="post" host="https://api.zaius.com/v3" path="/lists/subscriptions" %}
 {% api-method-summary %}
 Subscribe / Unsubscribe
 {% endapi-method-summary %}
