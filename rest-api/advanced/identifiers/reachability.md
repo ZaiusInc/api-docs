@@ -101,9 +101,9 @@ any valid marketing identifier type \(e.g. tyler@zaius.com\)
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-{% api-method method="get" host="https://api.zaius.com/v3" path="/consent/{field\_name}?id={id}" %}
+{% api-method method="get" host="https://api.zaius.com/v3" path="/reachability/{field\_name}?id={id}" %}
 {% api-method-summary %}
-Get Consent
+Get Reachability
 {% endapi-method-summary %}
 
 {% api-method-description %}
@@ -114,13 +114,13 @@ This endpoint allows you to get reachability information about an identifier.
 {% api-method-request %}
 {% api-method-path-parameters %}
 {% api-method-parameter name="field\_name" type="string" required=true %}
-the type of identifier you're request consent for \(e.g. email\)
+the type of identifier you're request reachability for \(e.g. email\)
 {% endapi-method-parameter %}
 {% endapi-method-path-parameters %}
 
 {% api-method-query-parameters %}
 {% api-method-parameter name="id" type="string" required=true %}
-the identifier value you're requesting consent information on
+the identifier value you're requesting reachability information on
 {% endapi-method-parameter %}
 {% endapi-method-query-parameters %}
 {% endapi-method-request %}
