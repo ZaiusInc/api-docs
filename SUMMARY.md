@@ -3,6 +3,7 @@
 * [Authentication](README.md)
 * [Batch Requests](batch-requests.md)
 * [Rate Limits](rate-limits.md)
+* [Source Fields](source-fields.md)
 
 ## REST API
 
