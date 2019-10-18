@@ -12,24 +12,20 @@ Create a new identifier within Zaius that will be used for user resolution.
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-body-parameters %}
-{% api-method-parameter name="merge\_confidence" type="string" required=true %}
-how confident are you that this identifier is not commonly on a shared device and can be used to merge customer records together? options are "high" and "low"
-{% endapi-method-parameter %}
-
 {% api-method-parameter name="name" type="string" required=true %}
-the name of the identifier \(e.g. Shopify\)
+the field name of the identifier, ending with one of the known suffixes: id, hash, number, token, alias, address, key
 {% endapi-method-parameter %}
 
-{% api-method-parameter name="suffix" type="string" required=true %}
-the suffix of the identifier \(id, hash, number, token, alias, address, key\)
+{% api-method-parameter name="display\_name" type="string" required=true %}
+the human-readable name, ending with title-case version of the name suffix: ID, Hash, Number, Token, Alias, Address, Key
 {% endapi-method-parameter %}
 
-{% api-method-parameter name="namespace" type="string" required=false %}
-used to create multiple identifiers of the same name and type and prevent collisions
+{% api-method-parameter name="merge\_confidence" type="string" required=true %}
+the level of confidence \("high" or "low"\) that this identifier can be used to merge customer profiles together and is NOT shared between individuals \(eg, a shared device token\)
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="messaging" type="boolean" required=false %}
-can this identifier be used to message customers and within campaigns?
+whether this identifier can be used to message customers within campaigns
 {% endapi-method-parameter %}
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
@@ -44,15 +40,15 @@ can this identifier be used to message customers and within campaigns?
 {
   "events": [
     {
-      "name": "event_my_name_my_namespace_id",
-      "display_name": "Event My Name ID (My Namespace)",
+      "name": "event_facebook_messenger_id",
+      "display_name": "Event Facebook Messenger ID",
       "type": "identifier"
     }
   ],
   "customers": [
     {
-      "name": "my_name_my_namespace_id",
-      "display_name": "Last Seen My Name ID (My Namespace)",
+      "name": "facebook_messenger_id",
+      "display_name": "Last Seen Facebook Messenger ID",
       "type": "identifier"
     }
   ]
@@ -92,13 +88,12 @@ can this identifier be used to message customers and within campaigns?
 {% code-tabs %}
 {% code-tabs-item title="Example Payload" %}
 ```javascript
-[{
-  "name": "Facebook Messenger",
-  "suffix": "id", // valid options: id, hash, number, token, alias, address, key
-  "namespace": "My Facebook Page",
-  "merge_confidence": "low",
+{
+  "name": "facebook_messenger_id",
+  "display_name": "Facebook Messenger ID"
+  "merge_confidence": "high",
   "messaging": true
-}] // array optional
+}
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
